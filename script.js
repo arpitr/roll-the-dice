@@ -2,6 +2,8 @@
 
 const currentScoreElementP0 = document.querySelector('#current--0');
 const currentScoreElementP1 = document.querySelector('#current--1');
+const playerElementP0 = document.querySelector('.player--0');
+const playerElementP1 = document.querySelector('.player--1');
 const scoreElementP0 = document.querySelector('#score--0');
 const scoreElementP1 = document.querySelector('#score--1');
 const img = document.querySelector('.dice');
@@ -57,13 +59,23 @@ const holdDice = function () {
     scoreElementP0.textContent = scoreP0;
     currentScoreP0 = 0;
     player = 1;
+    console.log(scoreP0);
+    if (scoreP0 > 1) {
+      gameFinish();
+      playerElementP0.classList.add('player--winner');
+    }
   } else {
     scoreP1 = scoreP1 + currentScoreP1;
     scoreElementP1.textContent = scoreP1;
     currentScoreP1 = 0;
     player = 0;
+    if (scoreP1 > 1) {
+      gameFinish();
+      playerElementP1.classList.add('player--winner');
+    }
   }
-  console.log('Hold the dice');
+  gameFinish();
+  console.log('Holding the dice');
 };
 
 const newGame = function () {
@@ -94,6 +106,11 @@ const ActivePlayer = function () {
   return activePLayerData;
 };
 
+const gameFinish = function () {
+  rollDiceBtn.removeEventListener('click', rollDice);
+  holdScoreBtn.removeEventListener('click', holdDice);
+  console.log('finish');
+};
 rollDiceBtn.addEventListener('click', rollDice);
 holdScoreBtn.addEventListener('click', holdDice);
 newGameBtn.addEventListener('click', newGame);
