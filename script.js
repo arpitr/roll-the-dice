@@ -60,7 +60,7 @@ const holdDice = function () {
     currentScoreP0 = 0;
     player = 1;
     console.log(scoreP0);
-    if (scoreP0 > 1) {
+    if (scoreP0 > 100) {
       gameFinish();
       playerElementP0.classList.add('player--winner');
     }
@@ -69,7 +69,7 @@ const holdDice = function () {
     scoreElementP1.textContent = scoreP1;
     currentScoreP1 = 0;
     player = 0;
-    if (scoreP1 > 1) {
+    if (scoreP1 > 100) {
       gameFinish();
       playerElementP1.classList.add('player--winner');
     }
